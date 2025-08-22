@@ -18,28 +18,34 @@ public class Calc {
 	}
 	
 	public double addition(double num1, double num2) {
-		double result = num1+num2;
+		double result = num1 + num2;
 		saveOperation(num1, num2, "+", result);
 	    return result;
 	}
 	
 	public double subtraction(double num1, double num2) {
-		double result = num1-num2;
+		double result = num1 - num2;
 		saveOperation(num1, num2, "-", result);
 	    return result;
 	}
 	
 	public double division(double num1, double num2) {
 		validateDivision(num1, num2);
-		double result = num1/num2;
+		double result = num1 / num2;
 		saveOperation(num1, num2, "/", result);
 	    return result;
 	}
 	
 	public double multiplication(double num1, double num2) {
-		double result = num1*num2;
+		double result = num1 * num2;
 		saveOperation(num1, num2, "*", result);
 	    return result;
+	}
+	
+	public double residual(double num1, double num2) {
+		double result = num1 % num2;
+		saveOperation(num1, num2, "%", result);
+		return result;
 	}
 	
 	public void clearLastOperations() {

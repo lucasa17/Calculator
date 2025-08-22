@@ -18,7 +18,7 @@ public class CalcConsoleWriter {
 	
 	public boolean menu() {
 		System.out.println("Menu:");
-		System.out.println("1 - Soma\t2 - Subtração\t3 - Divisão\t4 - Multiplicação\t5 - Histórico\t6 - Limpar histórico\t7 - Sair");
+		System.out.println("1 - Soma\t2 - Subtração\t3 - Divisão\t4 - Multiplicação\n5 - Resto da divisão\n6 - Histórico\t7 - Limpar histórico\t0 - Sair");
 		System.out.print("Escolha uma opção: ");
 		int option = scanner.nextInt();
 		double num1, num2;
@@ -27,36 +27,43 @@ public class CalcConsoleWriter {
 				num1 = setValue(1);
 				num2 = setValue(2);
 				writeOperation(calculator.addition(num1, num2));
-				return true;
+				break;
 			case 2:
 				num1 = setValue(1);
 				num2 = setValue(2);
 				writeOperation(calculator.subtraction(num1, num2));
-				return true;
+				break;
 			case 3:
 				num1 = setValue(1);
 				num2 = setValue(2);
 				writeOperation(calculator.division(num1, num2));
-				return true;
+				break;
 			case 4:
 				num1 = setValue(1);
 				num2 = setValue(2);
 				writeOperation(calculator.multiplication(num1, num2));
-				return true;
-			case 5: 
-				writeLastOperations();
-				return true;
-			case 6:
+				break;
+			case 5:
+				num1 = setValue(1);
+				num2 = setValue(2);
+				writeOperation(calculator.residual(num1, num2));
+				break;
+			case 6: 
+				writeLastOperations();			
+				break;
+			case 7:
 				calculator.clearLastOperations();
 				System.out.println("\nO histórico foi limpo.\n");
-				return true;
-			case 7:
+				break;
+			case 0:
 				System.out.println("\nSaindo...");
 				return false;
 			default:
 				System.out.println("Opção inválida");
-				return true;
+				break;
 		}
+		return true;
+
 	}
 	
 	private double setValue(int amount) {
