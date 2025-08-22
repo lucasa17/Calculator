@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Calc {
 	
-	List<String> lastOperations = new ArrayList<>();
+	private List<String> lastOperations = new ArrayList<>();
 			
 	public List<String> getLastOperations() {
 		return lastOperations;
