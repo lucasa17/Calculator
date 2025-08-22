@@ -42,7 +42,7 @@ public class Calc {
 	    return result;
 	}
 	
-	public void clear() {
+	public void clearLastOperations() {
 		lastOperations.clear();
 	}
 	

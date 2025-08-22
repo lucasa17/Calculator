@@ -47,7 +47,7 @@ public class CalcConsoleWriter {
 				writeLastOperations();
 				return true;
 			case 6:
-				calculator.clear();
+				calculator.clearLastOperations();
 				System.out.println("\nO histórico foi limpo.\n");
 				return true;
 			case 7:
