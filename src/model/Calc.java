@@ -8,33 +8,55 @@ public class Calc {
 	private List<String> lastOperations = new ArrayList<>();
 			
 	public List<String> getLastOperations() {
-		return lastOperations;
+		List<String> copyLastOperations = new ArrayList<>();
+		
+		for(String operation : lastOperations) {
+			copyLastOperations.add(operation);
+		}
+		
+		return copyLastOperations;
 	}
 	
-	public void addition(double num1, double num2) {
-	    String preListing = String.format("%.2f + %.2f = %.2f", num1, num2, num1+num2);
+	public double addition(double num1, double num2) {
+		double result = num1+num2;
+		saveOperation(num1, num2, "+", result);
+	    return result;
+	}
+	
+	public double subtraction(double num1, double num2) {
+		double result = num1-num2;
+		saveOperation(num1, num2, "-", result);
+	    return result;
+	}
+	
+	public double division(double num1, double num2) {
+		validateDivision(num1, num2);
+		double result = num1/num2;
+		saveOperation(num1, num2, "/", result);
+	    return result;
+	}
+	
+	public double multiplication(double num1, double num2) {
+		double result = num1*num2;
+		saveOperation(num1, num2, "*", result);
+	    return result;
+	}
+	
+	public void clear() {
+		lastOperations.clear();
+	}
+	
+	public void saveOperation(double num1, double num2, String operation, double result) {
+		String preListing = String.format("%.2f %s %.2f = %.2f", num1, operation, num2, result);
 	    lastOperations.add(preListing);
 	}
 	
-	public void subtraction(double num1, double num2) {
-	    String preListing = String.format("%.2f - %.2f = %.2f", num1, num2, num1-num2);
-	    lastOperations.add(preListing);
-	}
-	
-	public void division(double num1, double num2) {
-		validateDivision(num2);
-	    String preListing = String.format("%.2f / %.2f = %.2f", num1, num2, num1/num2);
-	    lastOperations.add(preListing);
-	}
-	
-	public void multiplication(double num1, double num2) {
-	    String preListing = String.format("%.2f * %.2f = %.2f", num1, num2, num1*num2);
-	    lastOperations.add(preListing);
-	}
-	
-	private void validateDivision(double num2) {
-		if(num2 == 0) {
-			throw new IllegalArgumentException("O segundo valor da divisão não pode ser igual a zero");
+	private void validateDivision(double num1, double num2) {
+		if(num1 <= 0) {
+			throw new IllegalArgumentException("Na divisão o numerador deve ser maior ou igual a zero");
+		}
+		if(num2 <= 0) {
+			throw new IllegalArgumentException("Na divisão o denominador deve ser maior ou igual a zero");
 		}
 	}
 }
