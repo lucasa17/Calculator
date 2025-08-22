@@ -13,7 +13,7 @@ public class CalcConsoleWriter {
 	}
 	
 	public void writer() {
-		for (String calculations : calculator.getHistorico()) {
+		for (String calculations : calculator.getLastOperations()) {
             System.out.println(calculations);
         }	
 	}

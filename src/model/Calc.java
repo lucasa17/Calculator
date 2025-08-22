@@ -5,39 +5,31 @@ import java.util.ArrayList;
 
 public class Calc {
 	
-	List<String> historico = new ArrayList<>();
+	List<String> lastOperations = new ArrayList<>();
 			
-	public List<String> getHistorico() {
-		return historico;
+	public List<String> getLastOperations() {
+		return lastOperations;
 	}
 	
-	public String addition(double num1, double num2) {
+	public void addition(double num1, double num2) {
 	    String preListing = String.format("%.2f + %.2f = %.2f", num1, num2, num1+num2);
-		historico.add(preListing);
-		
-		return preListing;
+	    lastOperations.add(preListing);
 	}
 	
-	public String subtraction(double num1, double num2) {
+	public void subtraction(double num1, double num2) {
 	    String preListing = String.format("%.2f - %.2f = %.2f", num1, num2, num1-num2);
-		historico.add(preListing);
-		
-		return preListing;
+	    lastOperations.add(preListing);
 	}
 	
-	public String division(double num1, double num2) {
+	public void division(double num1, double num2) {
 		validateDivision(num2);
 	    String preListing = String.format("%.2f / %.2f = %.2f", num1, num2, num1/num2);
-		historico.add(preListing);
-		
-		return preListing;
+	    lastOperations.add(preListing);
 	}
 	
-	public String multiplication(double num1, double num2) {
+	public void multiplication(double num1, double num2) {
 	    String preListing = String.format("%.2f * %.2f = %.2f", num1, num2, num1*num2);
-		historico.add(preListing);
-		
-		return preListing;
+	    lastOperations.add(preListing);
 	}
 	
 	private void validateDivision(double num2) {
