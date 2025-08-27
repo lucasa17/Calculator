@@ -48,12 +48,91 @@ public class Calc {
 		return result;
 	}
 	
+	public double factorial(double num1) {
+	    validatePositiveNumber(num1);
+	    double result = calculateFactorial(num1); 
+	    saveOperation(num1, "!", result);
+	    return result;
+	}
+	private double calculateFactorial(double num) {
+	    if (num == 0 || num == 1) {
+	        return 1;
+	    }
+	    return num * calculateFactorial(num - 1);
+	}
+	
+	public String decimalToBinary(double num1) {
+		validatePositiveNumber(num1);
+		int intNum1 = (int) Math.round(num1);
+
+	    saveOperation(num1, "para Binário", decimalToBinaryRecursion(intNum1));
+		return decimalToBinaryRecursion(intNum1);
+	 }
+	private String decimalToBinaryRecursion(int num1) {
+		String binaryValue = "";
+		if (num1 == 0 || num1 == 1) {
+			binaryValue = "" + num1;
+		} else {
+			binaryValue = binaryValue + decimalToBinaryRecursion(num1 / 2) + num1 % 2;
+		}
+		return binaryValue;
+	}
+	
+	public String decimalToHexadecimal(double num1) {
+		validatePositiveNumber(num1);
+		int intNum1 = (int) Math.round(num1);
+		
+		saveOperation(intNum1, "para Hexadecimal", decimalToHexRecursion(intNum1));
+		return decimalToHexRecursion(intNum1);
+	}
+
+	private String decimalToHexRecursion(int num1) {
+		if (num1 == 0)
+			return "0";
+
+		char[] hexChars = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
+
+		int remainder = num1 % 16;
+		String hex = decimalToHexRecursion(num1 / 16);
+
+		if (hex.equals("0"))
+			return String.valueOf(hexChars[remainder]);
+		else
+			return hex + hexChars[remainder];
+	}
+	
+	public double additionPercentage(double value, double percentage) {
+		double result = value + (value * (percentage/100)) ;
+		saveOperation(value, percentage, "+%", result);
+		return result;
+	}
+	
+	public double subtractionPercentage(double value, double percentage) {
+		double result = value - (value * (percentage/100)) ;
+		saveOperation(value, percentage, "-%", result);
+		return result;
+	}
+	
+	public double percentageOf(double value, double percentage) {
+		double result = value * (percentage/100) ;
+		saveOperation(value, percentage, "%", result);
+		return result;
+	}
+	
 	public void clearLastOperations() {
 		lastOperations.clear();
 	}
 	
 	public void saveOperation(double num1, double num2, String operation, double result) {
 		String preListing = String.format("%.2f %s %.2f = %.2f", num1, operation, num2, result);
+	    lastOperations.add(preListing);
+	}
+	public void saveOperation(double num1, String operation, double result) {
+		String preListing = String.format("%.2f %s = %.2f", num1, operation, result);
+	    lastOperations.add(preListing);
+	}
+	public void saveOperation(double num1, String operation, String result) {
+		String preListing = String.format("%.2f %s = %s", num1, operation, result);
 	    lastOperations.add(preListing);
 	}
 	
@@ -63,6 +142,11 @@ public class Calc {
 		}
 		if(num2 <= 0) {
 			throw new IllegalArgumentException("Na divisão o denominador deve ser maior ou igual a zero");
+		}
+	}
+	private void validatePositiveNumber(double num1) {
+		if(num1 < 0) {
+			throw new IllegalArgumentException("Valor deve ser maior que zero");
 		}
 	}
 }
