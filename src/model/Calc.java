@@ -44,7 +44,7 @@ public class Calc {
 	
 	public double residual(double num1, double num2) {
 		double result = num1 % num2;
-		saveOperation(num1, num2, "%", result);
+		saveOperation(num1, num2, "Resto de ", " /", result);
 		return result;
 	}
 	
@@ -65,7 +65,7 @@ public class Calc {
 		validatePositiveNumber(num1);
 		int intNum1 = (int) Math.round(num1);
 
-	    saveOperation(num1, "para Binário", decimalToBinaryRecursion(intNum1));
+	    saveOperation(num1, "em Binário", decimalToBinaryRecursion(intNum1));
 		return decimalToBinaryRecursion(intNum1);
 	 }
 	private String decimalToBinaryRecursion(int num1) {
@@ -82,7 +82,7 @@ public class Calc {
 		validatePositiveNumber(num1);
 		int intNum1 = (int) Math.round(num1);
 		
-		saveOperation(intNum1, "para Hexadecimal", decimalToHexRecursion(intNum1));
+		saveOperation(intNum1, "em Hexadecimal", decimalToHexRecursion(intNum1));
 		return decimalToHexRecursion(intNum1);
 	}
 
@@ -103,19 +103,19 @@ public class Calc {
 	
 	public double additionPercentage(double value, double percentage) {
 		double result = value + (value * (percentage/100)) ;
-		saveOperation(value, percentage, "+%", result);
+		saveOperation(percentage, value, "+", "%", result);
 		return result;
 	}
 	
 	public double subtractionPercentage(double value, double percentage) {
 		double result = value - (value * (percentage/100)) ;
-		saveOperation(value, percentage, "-%", result);
+		saveOperation(percentage, value, "-", "%", result);
 		return result;
 	}
 	
 	public double percentageOf(double value, double percentage) {
 		double result = value * (percentage/100) ;
-		saveOperation(value, percentage, "%", result);
+		saveOperation(percentage, value, "", "%", result);
 		return result;
 	}
 	
@@ -123,16 +123,20 @@ public class Calc {
 		lastOperations.clear();
 	}
 	
-	public void saveOperation(double num1, double num2, String operation, double result) {
+	private void saveOperation(double num1, double num2, String operation, double result) {
 		String preListing = String.format("%.2f %s %.2f = %.2f", num1, operation, num2, result);
 	    lastOperations.add(preListing);
 	}
-	public void saveOperation(double num1, String operation, double result) {
-		String preListing = String.format("%.2f %s = %.2f", num1, operation, result);
+	private void saveOperation(double num1, String operation, double result) {
+		String preListing = String.format("%.2f%s = %.2f", num1, operation, result);
 	    lastOperations.add(preListing);
 	}
-	public void saveOperation(double num1, String operation, String result) {
+	private void saveOperation(double num1, String operation, String result) {
 		String preListing = String.format("%.2f %s = %s", num1, operation, result);
+	    lastOperations.add(preListing);
+	}
+	private void saveOperation(double num1, double num2, String operation, String operation2, double result) {
+		String preListing = String.format("%s%.2f%s %.2f = %.2f", operation , num1, operation2, num2, result);
 	    lastOperations.add(preListing);
 	}
 	
